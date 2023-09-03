@@ -1,0 +1,26 @@
+{
+  "name": "answer-digital-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^29.6.4",
+    "jest-puppeteer": "^9.0.0",
+    "puppeteer": "^21.1.1"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 10000
+  },
+  "devDependencies": {
+    "cypress": "^13.1.0"
+  }
+}
