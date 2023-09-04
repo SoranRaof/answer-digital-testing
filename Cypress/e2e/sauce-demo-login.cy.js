@@ -26,7 +26,13 @@ describe("Login functionality", () => {
 
   it("logout button logs out user", () => {
     cy.login("standard_user", "secret_sauce");
-    cy.url().should("include", "/inventory.html");
     cy.logout();
+  });
+
+  it("standard_user cannot access '/inventory.html' when logged out", () => {
+    cy.login("standard_user", "secret_sauce");
+    cy.logout();
+    cy.go("back");
+    cy.inventoryAccessDeniedWhenLoggedOut();
   });
 });

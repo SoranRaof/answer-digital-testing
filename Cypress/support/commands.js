@@ -1,9 +1,11 @@
-const loginButton = "[data-test=login-button]";
-const logoutButton = "[data-test=logout_side_bar_link]";
-const menuButton = "[data-test=react-burger-menu-btn]";
-const usernameInput = "[data-test=username]";
-const passwordInput = "[data-test=password]";
-const errorElement = "[data-test=error]";
+import {
+  usernameInput,
+  passwordInput,
+  loginButton,
+  errorElement,
+  menuButton,
+  logoutButton,
+} from "./variables";
 
 Cypress.Commands.add("login", (username, password) => {
   cy.get(usernameInput).type(username);
@@ -39,7 +41,15 @@ Cypress.Commands.add("noCredentials", () => {
 });
 
 Cypress.Commands.add("logout", () => {
+  cy.url().should("include", "/inventory.html");
   cy.get(menuButton).click();
   cy.get(logoutButton).click();
-  cy.url().should("include", "sauce-demo.com/");
+  cy.url().should("include", "https://www.saucedemo.com/");
+});
+
+Cypress.Commands.add("inventoryAccessDeniedWhenLoggedOut", () => {
+  cy.get(errorElement).should(
+    "be.visible",
+    "Epic sadface: You can only access '/inventory.html' when you are logged in."
+  );
 });
